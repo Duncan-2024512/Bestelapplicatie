@@ -20,3 +20,28 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.product-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 0 auto;
+}
+
+.product {
+    width: 500px;
+    float: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.product-detail {
+    width: 300px;
+    float: left;
+}
+
+.product-price {
+    width: 300px;
+    float: right;
+}
