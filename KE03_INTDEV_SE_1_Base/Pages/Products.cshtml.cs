@@ -46,6 +46,8 @@ public class ProductsModel : PageModel
 
         HttpContext.Session.SetObjectAsJson("Cart", cart);
 
+        TempData["CartMessage"] = "Product toegevoegd aan winkelmand";
+
         return RedirectToPage();
     }
 }

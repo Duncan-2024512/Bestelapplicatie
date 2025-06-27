@@ -5,11 +5,26 @@
 }
 
 <h1>Alle Producten</h1>
-<div>
+<div class="search-bar-container">
+    <form class="search-bar-form" method="get">
+        <input class="search-bar-input" type="text" name="search" placeholder="Zoek producten..." value="@Request.Query["search"]" />
+        <button class="search-bar-btn" type="submit">&#128269;</button>
+    </form>
+</div>
+
+@if (TempData["CartMessage"] != null)
+{
+    <div id="cart-popup" class="cart-popup">
+        @TempData["CartMessage"]
+    </div>
+}
+
+<div class="products-grid">
     @foreach (var product in Model.Products)
     {
-        <div>
-            <a asp-page="ProductDetails" asp-route-id="@product.Id">@product.Name</a>
+        <div class="product-card">
+            <div class="product-img-placeholder"></div>
+            <a class="product-title" asp-page="ProductDetails" asp-route-id="@product.Id">@product.Name</a>
             <p>Prijs: €@product.Price</p>
             <form method="post" asp-page-handler="AddToCart">
                 <input type="hidden" name="productId" value="@product.Id" />
@@ -19,3 +34,5 @@
         </div>
     }
 </div>
+
+<script src="~/js/site.js"></script>
