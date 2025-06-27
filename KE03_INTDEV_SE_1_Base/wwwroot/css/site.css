@@ -8,40 +8,116 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
-}
-
-.product-grid {
+.cart-flex-container {
     display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin: 0 auto;
+    gap: 32px;
+    align-items: flex-start;
 }
 
-.product {
-    width: 500px;
-    float: center;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.cart-items {
+    flex: 2;
+    min-width: 350px;
 }
 
-.product-detail {
-    width: 300px;
-    float: left;
+.cart-summary {
+    flex: 1;
+    border-left: 2px solid #aaa;
+    padding-left: 24px;
+    min-width: 250px;
 }
 
-.product-price {
-    width: 300px;
-    float: right;
+.cart-item {
+    display: flex;
+    background: #ffe7a3;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    align-items: center;
+    padding: 12px;
+    position: relative;
+}
+
+.cart-img {
+    width: 140px;
+    height: 100px;
+    background: #ddd;
+    border-radius: 2px;
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+
+.cart-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cart-title {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.cart-price {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.cart-remove {
+    background: red;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    transition: background 0.2s;
+}
+
+    .cart-remove:hover {
+        background: #b30000;
+    }
+
+.summary-list {
+    margin-bottom: 16px;
+    padding-left: 0;
+}
+
+    .summary-list li {
+        list-style: none;
+        margin-bottom: 4px;
+    }
+
+.summary-total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.summary-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: 1px solid #888;
+    background: #f8f8f8;
+    margin-top: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+    .summary-btn:hover {
+        background: #e0e0e0;
+    }
+
+.summary-label {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+hr {
+    margin: 12px 0;
 }

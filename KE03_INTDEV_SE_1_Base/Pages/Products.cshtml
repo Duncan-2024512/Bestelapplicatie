@@ -1,17 +1,21 @@
-﻿@page
+@page
 @model ProductsModel
 @{
     ViewData["Title"] = "Products";
 }
 
-<div class="product-grid">
+<h1>Alle Producten</h1>
+<div>
     @foreach (var product in Model.Products)
     {
-        <div class="product">
-            <h1>@Html.DisplayName(product.Name)</h1>
-            <a asp-page="/ProductDetails/BombDetail">Ga naar ProductPagina</a>
-            <p>€@Html.DisplayName(product.Price.ToString())</p>
-            <button>Toevoegen aan winkelmandje</button>
+        <div>
+            <a asp-page="ProductDetails" asp-route-id="@product.Id">@product.Name</a>
+            <p>Prijs: �@product.Price</p>
+            <form method="post" asp-page-handler="AddToCart">
+                <input type="hidden" name="productId" value="@product.Id" />
+                <input type="hidden" name="quantity" value="1" />
+                <button type="submit">Toevoegen aan winkelmandje</button>
+            </form>
         </div>
     }
 </div>

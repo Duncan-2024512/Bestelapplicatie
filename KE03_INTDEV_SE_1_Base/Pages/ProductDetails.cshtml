@@ -1,0 +1,15 @@
+﻿@page
+@model KE03_INTDEV_SE_1_Base.Pages.Shared.ProductDetailsModel
+@{
+}
+
+@if (Model.Product != null)
+{
+    <h1>@Model.Product.Name</h1>
+    <p><strong>Beschrijving:</strong> @Model.Product.Description</p>
+    <p><strong>Prijs:</strong> €@Model.Product.Price</p>
+}
+else
+{
+    <p>Product niet gevonden.</p>
+}

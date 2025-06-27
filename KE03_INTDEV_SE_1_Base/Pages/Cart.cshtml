@@ -1,0 +1,76 @@
+﻿@page
+@model KE03_INTDEV_SE_1_Base.Pages.CartModel
+@{
+    ViewData["Title"] = "Cart";
+    decimal subTotaal = Model.Cart?.Sum(i => i.Product.Price * i.Quantity) ?? 0m;
+    decimal verzendkosten = (Model.Cart == null || !Model.Cart.Any() || subTotaal >= 2000m) ? 0m : 2.99m;
+    decimal totaal = subTotaal + verzendkosten;
+}
+
+<div class="cart-flex-container">
+    <div class="cart-items">
+        <h1>Winkelmandje:</h1>
+        @if (Model.Cart != null && Model.Cart.Any())
+        {
+            @foreach (var item in Model.Cart)
+            {
+                <div class="cart-item" data-product-id="@item.Product.Id">
+                    <div class="cart-img"></div>
+                    <div class="cart-info">
+                        <div class="cart-title">@item.Product.Name</div>
+                        <div>
+                            <span class="cart-price">€@item.Product.Price.ToString("0.00")</span>
+                        </div>
+                        <div>
+                            Aantal: @item.Quantity
+                        </div>
+                    </div>
+                    <button class="cart-remove" onclick="removeFromCart(@item.Product.Id)">x</button>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Je winkelmandje is leeg.</p>
+        }
+    </div>
+    <div class="cart-summary">
+        <ul class="summary-list">
+            @if (Model.Cart != null)
+            {
+                @foreach (var item in Model.Cart)
+                {
+                    <li>@item.Product.Name | €@item.Product.Price.ToString("0.00")</li>
+                }
+            }
+        </ul>
+        <hr />
+        <div>SubTotaal: <b>€@subTotaal.ToString("0.00")</b></div>
+        <div class="summary-label">Verzendkosten: €@verzendkosten.ToString("0.00")     (Gratis bij €2000,- aan producten)</div>
+        <hr />
+        <div class="summary-total">Totaal: @totaal.ToString("0.00")</div>
+        <button class="summary-btn">Doorgaan naar Betalen</button>
+    </div>
+</div>
+
+<form id="antiForgeryForm" method="post" style="display:none;">
+    @Html.AntiForgeryToken()
+</form>
+
+<script>
+    function removeFromCart(productId) {
+        const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+        fetch(`?handler=Remove`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'RequestVerificationToken': token
+            },
+            body: `productId=${productId}&__RequestVerificationToken=${token}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) location.reload();
+        });
+    }
+</script>
