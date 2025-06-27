@@ -48,7 +48,7 @@
             {
                 @foreach (var item in Model.Cart)
                 {
-                    <li>@item.Product.Name | €@item.Product.Price.ToString("0.00")</li>
+                    <li>(@item.Quantity x) | @item.Product.Name | €@((item.Product.Price * item.Quantity).ToString("0.00"))</li>
                 }
             }
         </ul>
