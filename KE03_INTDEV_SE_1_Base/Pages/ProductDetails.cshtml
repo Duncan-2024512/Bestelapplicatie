@@ -1,15 +1,35 @@
 ﻿@page
-@model KE03_INTDEV_SE_1_Base.Pages.ProductDetailsModel
+@model KE03_INTDEV_SE_1_Base.Pages.Shared.ProductDetailsModel
 @{
+    var product = Model.Product;
 }
 
-@if (Model.Product != null)
+@if (product != null)
 {
-    <h1>@Model.Product.Name</h1>
-    <p><strong>Beschrijving:</strong> @Model.Product.Description</p>
-    <p><strong>Prijs:</strong> €@Model.Product.Price</p>
+    <div class="detail-flex-container">
+        <div class="detail-main">
+            <img class="detail-img" src="@product.ImageUrl" alt="@product.Name" />
+            <div class="detail-title">Gekozen Shop Item</div>
+            <div class="detail-bottom-row">
+                <div class="detail-description">
+                    <div><b>Beschrijving van shop item</b></div>
+                    <div>@product.Description</div>
+                </div>
+                <div class="detail-buy">
+                    <div class="detail-price">€@product.Price.ToString("0.00")</div>
+                    <form method="post" asp-page-handler="AddToCart">
+                        <input type="hidden" name="productId" value="@product.Id" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <button type="submit" class="cart-add">Voeg toe aan winkelmandje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 else
 {
     <p>Product niet gevonden.</p>
 }
+
+<script src="~/js/site.js"></script>
