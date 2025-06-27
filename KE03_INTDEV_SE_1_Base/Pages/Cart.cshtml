@@ -43,6 +43,8 @@
         }
     </div>
     <div class="cart-summary">
+        <h1>Overzicht</h1>
+        <hr />
         <ul class="summary-list">
             @if (Model.Cart != null)
             {
@@ -57,7 +59,11 @@
         <div class="summary-label">Verzendkosten: €@verzendkosten.ToString("0.00")     (Gratis bij €2000,- aan producten)</div>
         <hr />
         <div class="summary-total">Totaal: @totaal.ToString("0.00")</div>
-        <button class="summary-btn">Doorgaan naar Betalen</button>
+        <hr />
+        <br />
+        <div>
+            <a class="summary-btn" asp-page="Payment" asp-route-id="@totaal">Doorgaan naar Betalen</a>
+        </div>
     </div>
 </div>
 

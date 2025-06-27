@@ -101,17 +101,19 @@ html {
 .summary-btn {
     width: 100%;
     padding: 12px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     border-radius: 10px;
     border: 1px solid #888;
-    background: #f8f8f8;
+    background: #003aff;
     margin-top: 16px;
     cursor: pointer;
     transition: background 0.2s;
+    color: #fff
 }
 
     .summary-btn:hover {
-        background: #e0e0e0;
+        background: #00caff;
+        color: #fff
     }
 
 .summary-label {
