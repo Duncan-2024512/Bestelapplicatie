@@ -27,6 +27,18 @@ namespace KE03_INTDEV_SE_1_Base.Pages
             }
             return new JsonResult(new { success = true });
         }
+
+        public IActionResult OnPostUpdateQuantity(int productId, int quantity)
+        {
+            var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
+            var item = cart.FirstOrDefault(i => i.Product.Id == productId);
+            if (item != null && quantity > 0)
+            {
+                item.Quantity = quantity;
+                HttpContext.Session.SetObjectAsJson("Cart", cart);
+            }
+            return RedirectToPage();
+        }
     }
 
     public static class SessionExtensions

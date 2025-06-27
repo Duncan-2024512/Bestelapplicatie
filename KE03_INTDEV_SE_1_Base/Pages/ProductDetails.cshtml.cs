@@ -4,7 +4,7 @@ using DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using DataAccessLayer;
 
-namespace KE03_INTDEV_SE_1_Base.Pages.Shared
+namespace KE03_INTDEV_SE_1_Base.Pages
 {
     public class ProductDetailsModel : PageModel
     {

@@ -53,8 +53,9 @@ html {
 }
 
 .cart-title {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
     font-weight: 500;
+    color: #555
 }
 
 .cart-price {
@@ -175,6 +176,15 @@ hr {
     outline: 4px solid #000000
 }
 
+.product-img {
+    width: 320px;
+    height: 160px;
+    object-fit: cover;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    margin-bottom: 16px;
+}
+
 .product-img-placeholder {
     width: 320px;
     height: 160px;
@@ -205,4 +215,11 @@ hr {
     box-shadow: 0 2px 12px rgba(0,0,0,0.2);
     opacity: 0.95;
     animation: fadeout 2s 1.5s forwards;
+}
+
+.cart-add {
+    background: #ffa336;
+    color: #000000;
+    padding: 8px 16px;
+    border-radius: 10px
 }

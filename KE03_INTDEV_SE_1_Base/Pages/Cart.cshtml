@@ -15,14 +15,22 @@
             @foreach (var item in Model.Cart)
             {
                 <div class="cart-item" data-product-id="@item.Product.Id">
-                    <div class="cart-img"></div>
+                    <img class="product-img" src="@item.Product.ImageUrl" alt="@item.Product.Name" />
                     <div class="cart-info">
-                        <div class="cart-title">@item.Product.Name</div>
+                        @* <div class="cart-title">@item.Product.Name</div> *@
+                        <a class="cart-title" asp-page="ProductDetails" asp-route-id="@item.Product.Id">@item.Product.Name</a>
                         <div>
                             <span class="cart-price">€@item.Product.Price.ToString("0.00")</span>
                         </div>
                         <div>
                             Aantal: @item.Quantity
+                        </div>
+                        <div>
+                            <form method="post" asp-page-handler="UpdateQuantity" style="display:inline;">
+                                <input type="hidden" name="productId" value="@item.Product.Id" />
+                                <input type="number" name="quantity" value="@item.Quantity" min="1" style="width:60px;" />
+                                <button type="submit">Wijzig</button>
+                            </form>
                         </div>
                     </div>
                     <button class="cart-remove" onclick="removeFromCart(@item.Product.Id)">x</button>

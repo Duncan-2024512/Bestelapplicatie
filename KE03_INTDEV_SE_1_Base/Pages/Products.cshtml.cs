@@ -17,9 +17,16 @@ public class ProductsModel : PageModel
         _context = context;
     }
 
-    public async Task OnGetAsync()
+    public async Task OnGetAsync(string search)
     {
-        Products = await _context.Products
+        var query = _context.Products.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            query = query.Where(p => p.Name.Contains(search) || p.Description.Contains(search));
+        }
+
+        Products = await query
             .Include(p => p.Orders)
             .ToListAsync();
     }

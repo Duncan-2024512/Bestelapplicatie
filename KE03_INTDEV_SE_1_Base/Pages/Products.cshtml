@@ -23,13 +23,13 @@
     @foreach (var product in Model.Products)
     {
         <div class="product-card">
-            <div class="product-img-placeholder"></div>
+            <img class="product-img" src="@product.ImageUrl" alt="@product.Name" />
             <a class="product-title" asp-page="ProductDetails" asp-route-id="@product.Id">@product.Name</a>
             <p>Prijs: €@product.Price</p>
             <form method="post" asp-page-handler="AddToCart">
                 <input type="hidden" name="productId" value="@product.Id" />
                 <input type="hidden" name="quantity" value="1" />
-                <button type="submit">Toevoegen aan winkelmandje</button>
+                <button class="cart-add" type="submit">Toevoegen aan winkelmandje</button>
             </form>
         </div>
     }
